@@ -65,7 +65,7 @@ public class DepartmentProgram {
 		int id = sc.nextInt();
 		sc.nextLine();
 		Department dep = departmentDao.findById(id);
-		System.out.println("New name: ");
+		System.out.print("New name: ");
 		String name = sc.nextLine();
 		dep.setName(name);
 		departmentDao.update(dep);
@@ -92,8 +92,7 @@ public class DepartmentProgram {
 		System.out.print("Department id to find: ");
 		int id = sc.nextInt();
 		sc.nextLine();
-		departmentDao.findById(id);
-		
+		System.out.println(departmentDao.findById(id));
 		sc.close();
 	}
 	

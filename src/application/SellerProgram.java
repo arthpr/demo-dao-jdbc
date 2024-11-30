@@ -140,8 +140,7 @@ public class SellerProgram {
 		System.out.println("Seller Id: ");
 		int id = sc.nextInt();
 		sc.nextLine();
-		sellerDao.findById(id);
-				
+		System.out.println(sellerDao.findById(id));
 		sc.close();
 	}
 	
