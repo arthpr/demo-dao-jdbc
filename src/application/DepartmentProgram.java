@@ -89,7 +89,7 @@ public class DepartmentProgram {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Department id to find: ");
+		System.out.print("Department id to find: ");
 		int id = sc.nextInt();
 		sc.nextLine();
 		departmentDao.findById(id);

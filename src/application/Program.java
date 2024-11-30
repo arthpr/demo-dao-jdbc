@@ -1,6 +1,7 @@
 package application;
 
 import java.text.ParseException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import db.DbException;
@@ -33,6 +34,12 @@ public class Program {
 		}
 		catch (ParseException e) {
 			throw new DbException(e.getMessage());
+		}
+		catch (InputMismatchException e) {
+			throw new DbException(e.getMessage());
+		}
+		catch(NullPointerException e) {
+			throw new DbException("Error: The value cannot be null! " + e.getMessage());
 		}
 		finally {
 			sc.close();

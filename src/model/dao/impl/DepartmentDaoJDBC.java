@@ -120,7 +120,8 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 		ResultSet rs = null;
 		try {
 			st = conn.prepareStatement(
-					"select department.* "
+					"select Id as DepartmentId, "
+					+ "Name as DepName "
 					+ "from department "
 					+ "where Id = ?");
 			
