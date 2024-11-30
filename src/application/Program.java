@@ -1,30 +1,41 @@
 package application;
 
-import model.dao.DaoFactory;
-import model.dao.SellerDao;
-import model.entities.Seller;
+import java.text.ParseException;
+import java.util.Scanner;
+
+import db.DbException;
 
 public class Program {
-
+	
 	public static void main(String[] args) {
 		
-		SellerDao sellerDao = DaoFactory.createSellerDao();
+		Scanner sc = new Scanner(System.in);
 		
-		sellerDao.deleteById(3);
-		
-		/*Seller seller = sellerDao.findById(1);
-		seller.setName("Neymar");
-		sellerDao.update(seller);
-		System.out.println(seller);*/
-		
-		//Department department = new Department(3, null);
-		
-		//List<Seller> seller = sellerDao.findAll();
-		//seller.forEach(System.out::println);
-		
-		//Seller newSeller = new Seller(null, "Jordan", "greg@gmail.com", new Date(), 4000.0, department);
-		///sellerDao.insert(newSeller);
-		//System.out.println("Inserted! New id: " + newSeller.getId());
+		try 
+		{
+			System.out.println("Sales System Database");
+			System.out.println();
+			System.out.println("1 - Edit Sellers");
+			System.out.println("2 - Edit Departments");
+			int i = sc.nextInt();
+			sc.nextLine();
+			
+			switch (i) {
+			case 1:
+				SellerProgram.editSellers();
+				break;
+			case 2:
+				DepartmentProgram.editDepartments();
+				break;
+			default:
+				System.out.println("Invalid option!");
+			}
+		}
+		catch (ParseException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			sc.close();
+		}
 	}
-
 }

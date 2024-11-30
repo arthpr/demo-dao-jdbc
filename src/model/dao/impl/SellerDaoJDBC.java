@@ -50,6 +50,7 @@ public class SellerDaoJDBC implements SellerDao	{
 					int id = rs.getInt(1);
 					obj.setId(id);
 				}
+				System.out.println("Successful insertion! New id: " + obj.getId());
 				DB.CloseResultSet(rs);
 			}
 			else {
@@ -82,7 +83,11 @@ public class SellerDaoJDBC implements SellerDao	{
 			st.setInt(5, obj.getDepartment().getId());
 			st.setInt(6, obj.getId());
 			
-			st.executeUpdate();
+			int rowsAffected = st.executeUpdate();
+			
+			if (rowsAffected > 0) {
+				System.out.println("Successful update! New seller: " + obj);
+			}
 		}
 		catch (SQLException e) {
 			throw new DbException(e.getMessage());
@@ -100,10 +105,10 @@ public class SellerDaoJDBC implements SellerDao	{
 			Seller obj = findById(id);
 			st = conn.prepareStatement(
 					"delete from seller "
-					+ "where Id = ? ",
-					Statement.RETURN_GENERATED_KEYS);
+					+ "where Id = ? ");
 			
 			st.setInt(1, id);
+			
 			int rowsAffected = st.executeUpdate();
 			
 			if (rowsAffected > 0) {
